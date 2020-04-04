@@ -14,6 +14,5 @@ Add the /bin/Debug/netstandard2.0/Algorithms.dll as reference to your project.
 * Merge Sort
 * Quick Sort
 
-### Supported Types
-* Integer
-* Double
+## Search algorithms
+* Binary Search

@@ -10,6 +10,7 @@ namespace Algorithms
             givenArray[indexA] = givenArray[indexB];
             givenArray[indexB] = tempValue;
         }
+
         public static void Swap(this double[] givenArray, int indexA, int indexB)
         {
             double tempValue = givenArray[indexA];
