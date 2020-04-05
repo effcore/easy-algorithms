@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Algorithms
@@ -17,6 +18,27 @@ namespace Algorithms
         public char[] ForbiddenCharacters = new char[] { ' ', '*', '/', '"' };
         public char[] SpecialCharacters = new char[] { '!', '§', '$', '%', '&', '(', ')', '=', '?', '#' };
         public string[] SqlPhrases = new string[] { ";", "--", "//"};
+
+        /// <summary>
+        /// Generates a MD5 hash from a string
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public virtual string HashMD5(string password)
+        {
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(password);
+            byte[] hash = md5.ComputeHash(inputBytes);
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Checks if the password fulfills are requirements

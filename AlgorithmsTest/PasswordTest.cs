@@ -7,6 +7,19 @@ namespace AlgorithmsTest
     [TestClass]
     public class PasswordTest
     {
+        Password testPassword = new Password();
+
+        #region Hash MD5
+        [TestMethod]
+        public void TestHashMD5()
+        {
+            string expectedResult = "54A9EC734B13E3F133218090993B49C4";
+            string result = testPassword.HashMD5("Hello my friends!");
+
+            Assert.AreEqual(expectedResult, result);
+        }
+        #endregion
+
         #region Test Poor Password Requirements
         [TestMethod]
         public void TestCheckPasswordPoor01()
@@ -37,6 +50,89 @@ namespace AlgorithmsTest
         {
             var poorPassword = GetPoorPasswordReq();
             poorPassword.CheckPassword("");
+        }
+        #endregion
+
+        #region Test Weak Password Requirements
+        [TestMethod]
+        public void TestCheckPasswordWeak01()
+        {
+            var weakPassword = GetWeakPasswordReq();
+
+            try
+            {
+                weakPassword.CheckPassword("HelloFriend");
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("expected no exception, but got: " + ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "password does not contain a upper case character")]
+        public void TestCheckPasswordWeak02()
+        {
+            var weakPassword = GetWeakPasswordReq();
+            weakPassword.CheckPassword("hellofriend");
+        }
+        #endregion
+
+        #region Test Regular Password Requirements
+        [TestMethod]
+        public void TestCheckPasswordRegular01()
+        {
+            var regularPassword = GetRegularPasswordReq();
+
+            try
+            {
+                regularPassword.CheckPassword("HelloFriend01");
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("expected no exception, but got: " + ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "password does not contain a digit")]
+        public void TestCheckPasswordRegular02()
+        {
+            var regularPassword = GetRegularPasswordReq();
+            regularPassword.CheckPassword("HelloFriend");
+        }
+        #endregion
+
+        #region Test Strong Password Requirements
+        [TestMethod]
+        public void TestCheckPasswordStrong01()
+        {
+            var strongPassword = GetStrongPasswordReq();
+
+            try
+            {
+                strongPassword.CheckPassword("HelloMyFriends01!");
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("expected no exception, but got: " + ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "password does not contain a special character")]
+        public void TestCheckPasswordStrong02()
+        {
+            var strongPassword = GetStrongPasswordReq();
+            strongPassword.CheckPassword("HelloMyFriends01");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "password contains a forbidden sql phrase ';'")]
+        public void TestCheckPasswordStrong03()
+        {
+            var strongPassword = GetStrongPasswordReq();
+            strongPassword.CheckPassword("HelloMyFriends01!;--");
         }
         #endregion
 
