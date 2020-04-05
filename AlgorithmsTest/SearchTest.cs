@@ -9,6 +9,7 @@ namespace AlgorithmsTest
     {
         public Search Search = new Search();
 
+        #region Binary Search
         [TestMethod]
         public void TestBinarySearch()
         {
@@ -17,7 +18,7 @@ namespace AlgorithmsTest
 
             int result = Search.BinarySearch(givenArray, targetNo);
             Assert.AreEqual(3, result);
-
         }
+        #endregion
     }
 }

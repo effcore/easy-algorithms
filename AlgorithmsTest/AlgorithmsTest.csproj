@@ -54,6 +54,7 @@
     <Compile Include="HelperClassTest.cs" />
     <Compile Include="SearchTest.cs" />
     <Compile Include="ExtensionMethodsTest.cs" />
+    <Compile Include="PasswordTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
