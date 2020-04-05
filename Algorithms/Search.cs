@@ -6,7 +6,8 @@ namespace Algorithms
 {
     public class Search
     {
-		public virtual int BinarySearch(int[] givenArray, int targetValue)
+        #region Binary Search
+        public virtual int BinarySearch(int[] givenArray, int targetValue)
 		{
 			// search space is givenArray[sorted low to high]
 			int low = 0;
@@ -23,21 +24,27 @@ namespace Algorithms
 
 				// target value is found
 				if (targetValue == givenArray[mid])
+				{
 					return mid;
+				}
 
 				// if target is less than the mid element, discard all elements
 				// in the right search space including the mid element
 				else if (targetValue < givenArray[mid])
+				{
 					high = mid - 1;
+				}
 
 				// if target is more than the mid element, discard all elements
 				// in the left search space including the mid element
 				else
+				{
 					low = mid + 1;
+				}
 			}
 
-			// target doesn't exist in the array
-			return -1;
+			throw new Exception("target doesn't exist in the array");
 		}
-	}
+        #endregion
+    }
 }

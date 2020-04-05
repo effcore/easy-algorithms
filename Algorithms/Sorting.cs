@@ -204,6 +204,7 @@ namespace Algorithms
 
             int i = 0;
             int j = 0;
+
             for (int k = left; k < right + 1; k++)
             {
                 if (i == leftArray.Length)
@@ -238,6 +239,7 @@ namespace Algorithms
 
             int i = 0;
             int j = 0;
+
             for (int k = left; k < right + 1; k++)
             {
                 if (i == leftArray.Length)
@@ -262,7 +264,6 @@ namespace Algorithms
                 }
             }
         }
-
 
         internal static void MergeSort(int[] input, int left, int right)
         {
@@ -318,6 +319,7 @@ namespace Algorithms
         {
             int pivot;
             pivot = arr[left];
+
             while (true)
             {
                 while (arr[left] < pivot)
@@ -345,6 +347,7 @@ namespace Algorithms
         {
             double pivot;
             pivot = arr[left];
+
             while (true)
             {
                 while (arr[left] < pivot)
@@ -371,6 +374,7 @@ namespace Algorithms
         internal static void QuickSort(int[] arr, int left, int right)
         {
             int pivot;
+
             if (left < right)
             {
                 pivot = QuickPartition(arr, left, right);
